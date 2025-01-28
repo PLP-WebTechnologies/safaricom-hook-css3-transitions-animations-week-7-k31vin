@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive and Dynamic Web Pages</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Part 1 -->
+    <button class="btn">Hover Me to change the color</button>
+    <!-- spinner -->
+    <div class="spinner"></div>
+
+    <!-- Part 2 -->
+
+    <!-- calculator -->
+    <div class="calculator">
+      <h1>Circle Area Calculator</h1>
+      <p>Enter the radius of the circle:</p>
+      <input
+        type="number"
+        id="radiusInput"
+        placeholder="Enter radius"
+        step="0.01"
+      />
+      <button onclick="calculateArea()" style="margin: 10px">
+        Calculate Area
+      </button>
+      <div class="output alert" id="outputArea"></div>
+    </div>
+
+    <!-- local and global scope -->
+
+    <!-- part 3 -->
+     <div style="margin: 2rem;">
+    <h1>Random Number Generator</h1>
+    <button onclick="generateRandomNumber()">Generate Random Number</button>
+    <div class="output" id="outputRandomNumber" style="margin: 1rem;"></div>
+</div>
+    <!-- modal -->
+    <button id="openModal">Open Modal</button>
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <span id="closeModal" class="close">&times;</span>
+        <p>This is My Modal!</p>
+      </div>
+    </div>
+
+    <script>
+      function calculateArea() {
+        const radius = document.getElementById("radiusInput").value;
+        const outputDiv = document.getElementById("outputArea");
+
+        if (radius && radius > 0) {
+          const area = Math.PI * Math.pow(radius, 2);
+          outputDiv.textContent = `The area of the circle is: ${area.toFixed(
+            2
+          )} square units.`;
+        } else {
+          outputDiv.textContent =
+            "Please enter a valid positive number for the radius.";
+        }
+      }
+
+      function generateRandomNumber() {
+        const randomNumber = Math.floor(Math.random() * 100) + 1;
+        const outputDiv = document.getElementById("outputRandomNumber");
+        outputDiv.textContent = `The random number is: ${randomNumber}`;
+      }
+
+      // Get the modal
+      const modal = document.getElementById("modal");
+      const openModalButton = document.getElementById("openModal");
+      const closeModalButton = document.getElementById("closeModal");
+
+      openModalButton.addEventListener("click", () => {
+        modal.classList.add("show");
+      });
+
+      closeModalButton.addEventListener("click", () => {
+        modal.classList.remove("show");
+      });
+
+      let globalVar = "I am global";
+
+      function Scope() {
+        let localVar = "I am local";
+        console.log(globalVar);
+        console.log(localVar);
+      }
+
+      Scope();
+      console.log(globalVar);
+    </script>
+  </body>
+</html>
